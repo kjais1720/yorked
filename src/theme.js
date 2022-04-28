@@ -1,0 +1,37 @@
+import { extendTheme } from '@chakra-ui/react'
+
+const config = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
+
+const colors = {
+  gray:{
+    800:"hsl(221, 48%, 15%)"
+  },
+  primary:{
+    // light:"hsl(233, 86%, 45%)",
+    light:"rgba(0, 200, 255, 1)",
+    base:"hsl(234, 71%, 25%)",
+    // base:"rgba(0, 97, 215, 1)",
+    dark:"hsl(234, 71%, 18%)",
+  },
+  overlays:{
+    primary:"hsla(234, 71%, 20%,0.3)",
+    gray:"hsla(0, 0%, 0%, 0.3)",
+    white:"hsla(0, 0%, 100%, 0.3)"
+  },
+  light:{
+    100: "hsl(223, 100%, 100%)",
+    200: "hsl(223, 56%, 94%)"
+  },
+  dark:{
+    100: "hsl(221, 48%, 19%)",
+    200: "hsl(221, 48%, 15%)"
+  },
+  bgGrad: "linear-gradient(to-br, primary.base, primary.light)"
+}
+
+const theme = extendTheme({ config, colors })
+
+export default theme
