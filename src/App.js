@@ -1,11 +1,14 @@
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Header } from "components";
+import { AllRoutes } from "AllRoutes";
 
 function App() {
   return (
     <div className="App" >
       <Router>
-        <h1>This is "Yorked" a task management App </h1>
+        <Header />
+        <AllRoutes />
       </Router>
     </div>
   );
