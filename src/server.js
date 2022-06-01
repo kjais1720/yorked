@@ -30,6 +30,12 @@ import {
   createColumnHandler,
   deleteColumnHandler,
 } from "backend/controllers/columnsController";
+import {
+  getAllPomoTasksHandler,
+  createPomoTaskHandler,
+  updatePomoTaskHandler,
+  deletePomoTaskHandler,
+} from "./backend/controllers/PomoTasksController";
 import { users } from "./backend/db/users";
 
 export function makeServer({ environment = "development" } = {}) {
@@ -42,7 +48,7 @@ export function makeServer({ environment = "development" } = {}) {
     models: {
       user: Model,
       notes: Model,
-      boards:Model
+      boards: Model,
     },
 
     seeds(server) {
@@ -53,6 +59,7 @@ export function makeServer({ environment = "development" } = {}) {
           boards: item.boards,
           notes: [],
           archives: [],
+          pomoTasks: [],
         })
       );
     },
@@ -71,18 +78,29 @@ export function makeServer({ environment = "development" } = {}) {
 
       //task routes (private)
       this.post("/user/boards/:boardId/tasks", createTaskHandler.bind(this));
-      this.post("/user/boards/:boardId/tasks/:taskId", updateTaskHandler.bind(this));
+      this.post(
+        "/user/boards/:boardId/tasks/:taskId",
+        updateTaskHandler.bind(this)
+      );
       this.delete(
         "/user/boards/:boardId/tasks/:taskId",
         deleteTaskHandler.bind(this)
       );
 
       //column routes (private)
-      this.post("/user/boards/:boardId/columns", createColumnHandler.bind(this));
+      this.post(
+        "/user/boards/:boardId/columns",
+        createColumnHandler.bind(this)
+      );
       this.delete(
         "/user/boards/:boardId/columns/:columnId",
         deleteColumnHandler.bind(this)
       );
+
+      this.get("/user/pomodoro/tasks", getAllPomoTasksHandler.bind(this));
+      this.post("/user/pomodoro/tasks", createPomoTaskHandler.bind(this));
+      this.post("/user/pomodoro/tasks/:taskId", updatePomoTaskHandler.bind(this));
+      this.delete("/user/pomodoro/tasks/:taskId", deletePomoTaskHandler.bind(this));
 
       // notes routes (private)
       this.get("/notes", getAllNotesHandler.bind(this));

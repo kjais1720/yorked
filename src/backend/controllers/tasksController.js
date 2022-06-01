@@ -26,10 +26,9 @@ export const createTaskHandler = function (schema, request) {
     const { boardId } = request.params;
     console.log({ task, columnId });
     const taskBoard = user.boards.find((board) => board._id === boardId);
-    taskBoard.tasks.push({ ...task, _id:uniqueId });
-    const taskColumn = taskBoard.columns?.find(
-      (column) => column._id === columnId
-    ) || [] ;
+    taskBoard.tasks.push({ ...task, _id: uniqueId });
+    const taskColumn =
+      taskBoard.columns?.find((column) => column._id === columnId) || [];
     taskColumn.taskIds.push(uniqueId);
 
     this.db.users.update({ _id: user._id }, user);
@@ -68,16 +67,15 @@ export const updateTaskHandler = function (schema, request) {
     const { columnId } = updatedTask;
     const { boardId, taskId } = request.params;
     const board = user.boards.find((board) => board._id === boardId);
-    board.tasks.forEach((task) => {
-      if (task._id === taskId) {
-        task = { ...updatedTask };
-      }
-    });
-
+    board.tasks = board.tasks.map((task) =>
+      task._id === taskId ? updatedTask : task
+    );
     board.columns.forEach((column) => {
-      column.taskIds = column.taskIds.filter((id) => id !== taskId);
       if (column._id === columnId) {
-        column.taskIds.push(taskId);
+        if (!column.taskIds.find((id) => id === taskId))
+          column.taskIds.push(taskId);
+      } else {
+        column.taskIds = column.taskIds.filter((id) => id !== taskId);
       }
     });
 

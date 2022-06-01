@@ -3,7 +3,7 @@ import { formatDate } from "../utils/authUtils";
 
 export const boards = [
   {
-    _id: uuid(),
+    _id: "board1",
     title: "Board 1",
     tasks: [
       {
@@ -12,17 +12,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "low",
         label: "To do",
-        dateAdded: "20-08-22",
+        columnId:"column1",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t2",
@@ -30,17 +34,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "high",
         label: "To do",
-        dateAdded: "20-08-22",
+        columnId:"column1",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t3",
@@ -49,7 +57,9 @@ export const boards = [
         subTasks: [],
         priority: "medium",
         label: "To do",
-        dateAdded: "20-08-22",
+        columnId:"column1",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t4",
@@ -57,21 +67,26 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: true,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "low",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "In Progress",
+        columnId:"column2",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t5",
@@ -79,17 +94,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "low",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "In Progress",
+        columnId:"column2",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t6",
@@ -97,17 +116,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "high",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "In Progress",
+        columnId:"column2",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t7",
@@ -115,17 +138,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "medium",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "Done",
+        columnId:"column3",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t8",
@@ -133,17 +160,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "medium",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "Done",
+        columnId:"column3",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t9",
@@ -151,17 +182,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "low",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "Done",
+        columnId:"column3",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
     ],
     columns: [
@@ -174,7 +209,8 @@ export const boards = [
         _id: "column2",
         title: "In Progress",
         taskIds: ["t4", "t5", "t6"],
-      },      {
+      },
+      {
         _id: "column3",
         title: "Done",
         taskIds: ["t7", "t8", "t9"],
@@ -182,7 +218,7 @@ export const boards = [
     ],
   },
   {
-    _id: uuid(),
+    _id: "board2",
     title: "Board 2",
     tasks: [
       {
@@ -191,17 +227,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "low",
         label: "To do",
-        dateAdded: "20-08-22",
+        columnId:"column1",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t2",
@@ -209,17 +249,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "high",
         label: "To do",
-        dateAdded: "20-08-22",
+        columnId:"column1",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t4",
@@ -227,21 +271,26 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: true,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "low",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "In Progress",
+        columnId:"column2",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t5",
@@ -249,17 +298,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "low",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "In Progress",
+        columnId:"column2",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t7",
@@ -267,17 +320,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "medium",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "Done",
+        columnId:"column3",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
       {
         _id: "t9",
@@ -285,17 +342,21 @@ export const boards = [
         description: "This is a small description",
         subTasks: [
           {
+            id: uuid(),
             title: "Sub task 1",
             checked: false,
           },
           {
+            id: uuid(),
             title: "Sub taks 2",
             checked: false,
           },
         ],
         priority: "low",
-        label: "To do",
-        dateAdded: "20-08-22",
+        label: "Done",
+        columnId:"column3",
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
       },
     ],
     columns: [
@@ -308,11 +369,12 @@ export const boards = [
         _id: "column2",
         title: "In Progress",
         taskIds: ["t4", "t5"],
-      },      {
+      },
+      {
         _id: "column3",
         title: "Done",
         taskIds: ["t7", "t9"],
       },
     ],
-  }
+  },
 ];
