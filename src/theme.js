@@ -10,10 +10,8 @@ const colors = {
     800:"hsl(221, 48%, 15%)"
   },
   primary:{
-    // light:"hsl(233, 86%, 45%)",
     light:"rgba(0, 200, 255, 1)",
     base:"hsl(234, 71%, 25%)",
-    // base:"rgba(0, 97, 215, 1)",
     dark:"hsl(234, 71%, 18%)",
   },
   overlays:{
