@@ -9,6 +9,9 @@ const colors = {
   gray:{
     800:"hsl(221, 48%, 15%)"
   },
+  blue:{
+    200:"rgba(0, 200, 255, 1)"
+  },
   primary:{
     light:"rgba(0, 200, 255, 1)",
     base:"hsl(234, 71%, 25%)",
@@ -27,7 +30,10 @@ const colors = {
     100: "hsl(221, 48%, 19%)",
     200: "hsl(221, 48%, 15%)"
   },
-  bgGrad: "linear-gradient(to-br, primary.base, primary.light)"
+  bgGrad: "linear-gradient(to-br, primary.base, primary.light)",
+  fonts:{
+    pomo:"Arial Rounded, sans-serif"
+  }
 }
 
 const theme = extendTheme({ config, colors })
