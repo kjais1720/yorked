@@ -1,0 +1,1 @@
+export { boardsReducer } from "./boards";
