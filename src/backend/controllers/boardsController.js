@@ -45,7 +45,29 @@ export const createBoardHandler = function (schema, request) {
       );
     }
     const { board } = JSON.parse(request.requestBody);
-    user.boards.push({ ...board, _id: uuid(), columns:[], tasks:[] });
+    user.boards.push(
+      { 
+        ...board, 
+        _id: uuid(), 
+        columns:[
+          {
+            _id: "column1",
+            title: "To do",
+            taskIds: [],
+          },
+          {
+            _id: "column2",
+            title: "In Progress",
+            taskIds: [],
+          },
+          {
+            _id: "column3",
+            title: "Done",
+            taskIds: [],
+          },    
+        ], 
+        tasks:[] 
+      });
     this.db.users.update({ _id: user._id }, user);
     return new Response(201, {}, { boards: user.boards });
   } catch (error) {

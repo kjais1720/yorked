@@ -38,7 +38,7 @@ export function Boards() {
   const changeHandler = (e) => setNewBoardTitle(e.target.value);
 
   return (
-    <Box gap={4} color="white" align="center" w="full">
+    <Box gap={4} align="center" w="full">
       <Heading as="h2" size="md">
         All Boards
       </Heading>
@@ -54,7 +54,7 @@ export function Boards() {
           </Button>
         </Flex>
       </form>
-      <Flex justify="center" marginTop={4} gap={2} wrap="wrap">
+      <Flex color="white" justify="center" marginTop={4} gap={2} wrap="wrap">
         {boards.map(({ title, _id }) => (
             <Flex
               p={4}
@@ -64,11 +64,14 @@ export function Boards() {
               shadow="md"
               key={_id}
               flexBasis={64}
+              justify="center"
+              align="center"
+              position="relative"
             >
           <Link to={`/boards/${_id}`}>
-              <Text>{title}</Text>
+              <Text fontSize="2xl">{title}</Text>
           </Link>
-              <IconButton bg="transparent" ml="auto" onClick={(e) => deleteBoard(_id)}>
+              <IconButton position="absolute" top={4} right={4} bg="transparent" ml="auto" onClick={(e) => deleteBoard(_id)}>
                 <FaTrash />
               </IconButton>
             </Flex>

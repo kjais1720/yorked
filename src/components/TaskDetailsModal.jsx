@@ -4,7 +4,6 @@ import {
   Checkbox,
   Editable,
   EditableInput,
-  EditableTextarea,
   EditablePreview,
   Flex,
   FormControl,
@@ -236,7 +235,7 @@ export function TaskDetailsModal({ task, isOpen, onClose }) {
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={()=>{startPomodoro(title)}}>
+            <Button marginRight="auto" colorScheme="blue" onClick={()=>{startPomodoro(title)}}>
               Start Working
             </Button>
             <Button mx={2} onClick={deleteTask} colorScheme="red">
