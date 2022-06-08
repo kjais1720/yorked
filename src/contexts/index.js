@@ -1,2 +1,2 @@
 export { useBoards, BoardsProvider } from "./Boards";
-export { PomodoroProvider } from "./Pomodoro";
+export { usePomodoro, PomodoroProvider } from "./Pomodoro";

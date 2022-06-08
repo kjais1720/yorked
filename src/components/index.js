@@ -4,3 +4,4 @@ export { Quill } from "./QuillEditor";
 export { Task } from "./Task";
 export { CreateTaskModal } from "./createTaskModal"
 export { TaskDetailsModal } from "./TaskDetailsModal"
+export { PomoTimer } from "./PomoTimer";
