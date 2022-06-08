@@ -1,14 +1,18 @@
 import { Task } from "components";
 import { Droppable } from "react-beautiful-dnd";
-import { Box, Stack, Heading, useColorMode, Button } from "@chakra-ui/react";
+import {
+  Button,
+  Stack,
+  Heading,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { FaPlus } from "react-icons/fa";
 
 export function Column({ column, tasks, deleteColumn }) {
-  const { colorMode } = useColorMode();
   const { _id, title } = column;
   return (
-    <Box minWidth="xs" w="xs">
+    <Stack minWidth="xs" w="xs" bg={useColorModeValue("light.200", "dark.100")}>
       <Heading
         as="h2"
         color="light.100"
@@ -26,12 +30,14 @@ export function Column({ column, tasks, deleteColumn }) {
           <DeleteIcon fontSize="md" />
         </button>
       </Heading>
+      <Button margin={8}>
+        Create new task <FaPlus />{" "}
+      </Button>
       <Droppable droppableId={_id}>
         {(provided) => (
           <Stack
             gap={1}
             p={2}
-            bg={colorMode === "light" ? "light.200" : "dark.100"}
             borderBottomRadius={8}
             ref={provided.innerRef}
             {...provided.droppableProps}
@@ -43,6 +49,6 @@ export function Column({ column, tasks, deleteColumn }) {
           </Stack>
         )}
       </Droppable>
-    </Box>
+    </Stack>
   );
 }
