@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import {
+  Button,
   Heading,
   Flex,
   Box,
@@ -8,17 +9,23 @@ import {
   useColorMode,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { useAuth } from "contexts";
+import { FaMoon, FaSun, FaPlus } from "react-icons/fa";
 export function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
   const [isSmallerThan720] = useMediaQuery("(max-width:720px)");
+  const { userState, logout } = useAuth();
+  const {
+    user: { firstName },
+    isLoggedIn,
+  } = userState;
 
   const getActiveLinkColor = ({ isActive }) =>
     isActive ? { color: "rgb(0, 200, 255)" } : { color: "hsl(0,0%,54%)" };
 
   return (
     <Box shadow="md">
-      <Flex as="header" py={4} align="center" px={isSmallerThan720 ? 4 : 8}>
+      <Flex as="header" py={4} align="center" gap={{base:4}} px={{base:8, sm:4}} flexWrap="wrap">
         <Heading
           as="h1"
           bgGradient="linear(to-br, primary.base, primary.light)"
@@ -33,11 +40,6 @@ export function Header() {
             icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
           />
           <Text fontWeight="semibold">
-            <NavLink style={getActiveLinkColor} to="/auth">
-              Login
-            </NavLink>
-          </Text>
-          <Text fontWeight="semibold">
             <NavLink style={getActiveLinkColor} to="/boards">
               Boards
             </NavLink>
@@ -47,8 +49,24 @@ export function Header() {
               Pomodoro
             </NavLink>
           </Text>
+          <Text fontWeight="semibold">
+            {isLoggedIn ? (
+              <Button color="gray.500" onClick={logout}>
+                Logout
+              </Button>
+            ) : (
+              <NavLink style={getActiveLinkColor} to="/auth/login">
+                Login
+              </NavLink>
+            )}
+          </Text>
+
         </Flex>
       </Flex>
+      <Box
+        bgGradient="linear-gradient(to-r, primary.base, primary.light)"
+        h={1}
+      />
     </Box>
   );
 }

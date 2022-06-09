@@ -1,5 +1,6 @@
 import { boardsDispatchConstants } from "utilities";
 const {
+  GET_ALL_BOARDS,
   CREATE_NEW_BOARD,
   UPDATE_BOARD,
   DELETE_BOARD,
@@ -11,6 +12,13 @@ const {
 } = boardsDispatchConstants;
 export const boardsReducer = (state, { type, payload }) => {
   switch (type) {
+    case GET_ALL_BOARDS:
+      return({
+        ...state,
+        url:"/user/boards",
+        method:"get",
+        data:{}
+      })
     case CREATE_NEW_BOARD:
       return {
         ...state,

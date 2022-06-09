@@ -19,8 +19,7 @@ export const useAxios = ({url, method, data}) => {
 
   axios.interceptors.request.use(
     (config) => {
-      // const userToken = localStorage.getItem(USER_TOKEN);
-      const userToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YzQyOWFhMC1mYzY4LTRmMjAtOGE2Mi1lYWUzMTliMTdjNDMiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.0Tt83jURNST6Or-CVaFB_mHqlpAMXXIJfJ3HmDU9AMQ"
+      const userToken = localStorage.getItem(USER_TOKEN);
       config.baseURL="/api"
       config.headers.authorization = userToken;
       return config;
@@ -31,7 +30,6 @@ export const useAxios = ({url, method, data}) => {
   );
 
   const getData = async () => {
-    const userToken = localStorage.getItem(USER_TOKEN);
     try {
       setApiState(prev=> ({...prev,isLoading:true}))
 

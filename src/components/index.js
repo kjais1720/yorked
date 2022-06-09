@@ -7,5 +7,7 @@ export { TaskDetailsModal } from "./TaskDetailsModal";
 export { PomoTimer } from "./PomoTimer";
 export { PomoTasks } from "./PomoTasks";
 export { PomoTaskForm } from "./PomoTaskForm";
+export { SignupCard } from "./SignUpCard";
+export { LoginCard } from "./LoginCard";
 export { Toast } from "./toast";
 export { EditPomoTaskPopover } from "./EditPomoTaskPopover";
