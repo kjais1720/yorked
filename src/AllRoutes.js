@@ -4,7 +4,7 @@ import { useMediaQuery, Box } from "@chakra-ui/react";
 export function AllRoutes() {
   const [isSmallerThan720] = useMediaQuery("(max-width:720px)");
   return (
-    <Box px={isSmallerThan720 ? 4 : 8} py={4}>
+    <Box px={{sm:4, md:8}} py={4}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/boards" element={<Boards />} />
