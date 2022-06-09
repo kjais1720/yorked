@@ -26,13 +26,11 @@ export function Task({ task }) {
 
   return (
     <Stack
-      // onClick={() => setActive(_id)}
       p={4}
       borderRadius={8}
-      // bg={isActive ? "primary.light" : "whiteAlpha.200"}
       bg={useColorModeValue("light.200", "dark.100")}
       borderLeft={isActive ? "solid 5px" : "none"}
-      borderLeftColor="primary.base"
+      borderLeftColor="primary.light"
       color={
         isDone
           ? "gray.400"
@@ -57,6 +55,7 @@ export function Task({ task }) {
           textDecoration={isDone ? "line-through" : "none"}
           fontSize="xl"
           paddingY={2}
+          onClick={() => setActiveTask(_id)}
         >
           {title}
         </Heading>

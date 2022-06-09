@@ -11,3 +11,4 @@ export { LoginCard } from "./LoginCard";
 export { Toast } from "./toast";
 export { EditPomoTaskPopover } from "./EditPomoTaskPopover";
 export { Markdown } from "./Markdown";
+export { FeaturesGrid } from "./FeaturesGrid"

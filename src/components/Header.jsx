@@ -10,10 +10,9 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { useAuth } from "contexts";
-import { FaMoon, FaSun, FaPlus } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 export function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const [isSmallerThan720] = useMediaQuery("(max-width:720px)");
   const { userState, logout } = useAuth();
   const {
     user: { firstName },
@@ -32,7 +31,7 @@ export function Header() {
           bgClip="text"
           userSelect="none"
         >
-          <NavLink to="/">Yorked</NavLink>
+          <NavLink to="/">Yorked.</NavLink>
         </Heading>
         <Flex as="ul" gap={4} ml="auto" align="center">
           <IconButton
