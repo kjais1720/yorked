@@ -7,7 +7,9 @@ import {
 } from '@chakra-ui/react';
 import { FeaturesGrid } from 'components';
 import { Link } from "react-router-dom";
+import { useDocumentTitle } from 'utilities';
 export function Home() {
+  useDocumentTitle("Yorked")
   return (
     <Container maxW={'5xl'}>
 
