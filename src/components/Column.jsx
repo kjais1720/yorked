@@ -30,9 +30,6 @@ export function Column({ column, tasks, deleteColumn }) {
           <DeleteIcon fontSize="md" />
         </button>
       </Heading>
-      <Button margin={8}>
-        Create new task <FaPlus />{" "}
-      </Button>
       <Droppable droppableId={_id}>
         {(provided) => (
           <Stack

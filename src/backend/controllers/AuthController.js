@@ -38,10 +38,11 @@ export const signupHandler = function (schema, request) {
       ...rest,
       notes: [],
       archives: [],
+      boards:[]
     };
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign({ _id, email }, process.env.REACT_APP_JWT_SECRET);
-    return new Response(201, {}, { createdUser, encodedToken });
+    return new Response(201, {}, { user:createdUser, encodedToken });
   } catch (error) {
     return new Response(
       500,
@@ -76,7 +77,7 @@ export const loginHandler = function (schema, request) {
         process.env.REACT_APP_JWT_SECRET
       );
       foundUser.password = undefined;
-      return new Response(200, {}, { foundUser, encodedToken });
+      return new Response(200, {}, { user:foundUser, encodedToken });
     }
     return new Response(
       401,

@@ -1,4 +1,5 @@
 export const boardsDispatchConstants = {
+  GET_ALL_BOARDS:"GET_ALL_BOARDS",
   CREATE_NEW_BOARD:"CREATE_NEW_BOARD",
   UPDATE_BOARD : "UPDATE_BOARD",
   DELETE_BOARD: "DELETE_BOARD",
@@ -21,4 +22,5 @@ export const authDispatchConstants = {
   LOGOUT:"LOGOUT"
 }
 
-export const USER_TOKEN = "userToken";
+export const USER_INFO = "USER_INFO";
+export const USER_TOKEN = "USER_TOKEN";

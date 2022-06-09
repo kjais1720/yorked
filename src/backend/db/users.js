@@ -9,10 +9,10 @@ import { boards } from "backend/db/boards";
 export const users = [
   {
     _id: uuid(),
-    firstName: "Adarsh",
-    lastName: "Balika",
-    email: "adarshbalika@gmail.com",
-    password: "adarshBalika123",
+    firstName: "Johnrao",
+    lastName: "Doekar",
+    email: "johnrao@gmail.com",
+    password: "doekaR@123",
     boards:boards,
     createdAt: formatDate(),
     updatedAt: formatDate(),
