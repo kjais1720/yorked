@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Header } from "components";
+import { Header, Toast } from "components";
 import { AllRoutes } from "AllRoutes";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Header />
         <AllRoutes />
-        {/* <Mockman /> */}
+        <Toast/>
       </Router>
     </div>
   );

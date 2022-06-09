@@ -52,7 +52,7 @@ export function PomoTimer() {
     if (timerStatus === "stopped") setTimeLimit(null);
   }, [timerStatus]);
   const { pomoTasks } = usePomodoro();
-  const currentTask = pomoTasks.find(({ isActive }) => isActive);
+  const taskFromBoard = pomoTasks.find(({ isActive }) => isActive);
 
   const changeTimer = (e) => {
     const { name, value } = e.target;
@@ -88,7 +88,11 @@ export function PomoTimer() {
   document.title = timeInMinutes;
   return (
     <DarkMode>
-      <Stack flex={1} flexBasis="450px" gap={4} align="center">
+      <Stack
+        bgGradient="linear-gradient(to-br, primary.base, primary.light)"
+        padding={4}
+        borderRadius={8}
+       flex={1} flexBasis="350px" gap={4} align="center">
         <Flex gap={4} flexWrap="wrap" justify="center">
           {timers.map(({ name, timeLimit }, idx) => (
             <Button
@@ -106,7 +110,9 @@ export function PomoTimer() {
             </Button>
           ))}
         </Flex>
-        <Heading as="h3" textAlign="center" size="lg" height="45px">{currentTask && currentTask.title}</Heading>
+        <Heading as="h3" textAlign="center" size="lg" height="45px">
+          {taskFromBoard && taskFromBoard.title}
+        </Heading>
         <CircularProgress
           capIsRound
           color="green.400"
