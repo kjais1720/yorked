@@ -1,5 +1,6 @@
 import { v4 as uuid } from "uuid";
 import {
+  Box,
   Button,
   Checkbox,
   Editable,
@@ -8,6 +9,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Heading,
   Input,
   IconButton,
   Modal,
@@ -20,10 +22,11 @@ import {
   Select,
   Stack,
   Text,
+  Textarea,
   SlideFade,
 } from "@chakra-ui/react";
 import { useBoards } from "contexts";
-import { Quill } from "components";
+import { Markdown } from "components";
 import { FaPlus, FaTimes, FaCheck } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
@@ -32,15 +35,20 @@ const { UPDATE_TASK, DELETE_TASK } = boardsDispatchConstants;
 
 export function TaskDetailsModal({ task, isOpen, onClose }) {
   const [taskDetails, setTaskDetails] = useState({});
-  const { boards, boardsApiDispatch } = useBoards();
-  const { boardId } = useParams();
-  const navigate = useNavigate();
+  const [isEditing, setIsEditing] = useState(false);
   const [newSubTask, setNewSubTask] = useState("");
-  const columns = boards?.find(({ _id }) => _id === boardId)?.columns;
+  const [newDescription, setNewDescription] = useState(task.description);
+
   useEffect(() => {
     if (task.title) setTaskDetails({ ...task, subTasks: [...task.subTasks] });
   }, [task]);
   const subTaskChangeHandler = (e) => setNewSubTask(e.target.value);
+
+  const { boards, boardsApiDispatch } = useBoards();
+  const { boardId } = useParams();
+  const navigate = useNavigate();
+
+  const columns = boards?.find(({ _id }) => _id === boardId)?.columns;
 
   const createNewSubtask = () => {
     setTaskDetails((prev) => ({
@@ -67,11 +75,15 @@ export function TaskDetailsModal({ task, isOpen, onClose }) {
   };
 
   const startPomodoro = (taskTitle) => {
-    navigate("/pomodoro",{state:{taskTitle}})
-  }
+    navigate("/pomodoro", { state: { taskTitle } });
+  };
 
   function updateTitle(value) {
     setTaskDetails((prev) => ({ ...prev, title: value }));
+  }
+
+  const updateNewDescription = e => {
+    setNewDescription(e.target.value);
   }
 
   const optionClickHandler = (e) => {
@@ -100,9 +112,7 @@ export function TaskDetailsModal({ task, isOpen, onClose }) {
     });
     onClose();
   };
-  const [isEditing, setIsEditing] = useState(false);
   const { title, subTasks, description } = taskDetails;
-
   return (
     <SlideFade in={isOpen} offsetY="15rem">
       <Modal isOpen={true} onClose={onClose}>
@@ -208,34 +218,57 @@ export function TaskDetailsModal({ task, isOpen, onClose }) {
             </Flex>
             <FormControl>
               <FormLabel color="gray.500">Description:</FormLabel>
-              {isEditing || (
-                <Text
-                  border="1px"
-                  borderRadius={8}
-                  p={4}
-                  borderColor="gray.600"
-                  onClick={() => setIsEditing(true)}
-                >
-                  {description}
-                </Text>
-              )}
-              {isEditing && (
-                <div>
-                  <Quill text={description} as={EditableInput} />
+              {isEditing ? (
+                <>
+                  <Textarea
+                    id="description"
+                    name="description"
+                    value={newDescription}
+                    size="sm"
+                    resize={"vertical"}
+                    onChange={updateNewDescription}
+                  />
+                  <Box marginY={4}>
+                    <Heading
+                      as="h2"
+                      color="gray.500"
+                      marginBottom={2}
+                      fontSize="md"
+                    >
+                      Live Preview:{" "}
+                    </Heading>
+                    <Markdown markdownText={newDescription} />
+                  </Box>
                   <Flex gap={2} my={2}>
-                    <IconButton onClick={() => setIsEditing(false)}>
+                    <IconButton onClick={() =>{
+                      setTaskDetails(prev=>({
+                        ...prev,
+                        description:newDescription
+                      }))
+                      setIsEditing(false);
+                    }}>
                       <FaCheck />
                     </IconButton>
                     <IconButton onClick={() => setIsEditing(false)}>
                       <FaTimes />
                     </IconButton>
                   </Flex>
-                </div>
+                </>
+              ) : (
+                <Box cursor="pointer">
+                  <Markdown clickHandler={()=>setIsEditing(true)} markdownText={description} />
+                </Box>
               )}
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button marginRight="auto" colorScheme="blue" onClick={()=>{startPomodoro(title)}}>
+            <Button
+              marginRight="auto"
+              colorScheme="blue"
+              onClick={() => {
+                startPomodoro(title);
+              }}
+            >
               Start Working
             </Button>
             <Button mx={2} onClick={deleteTask} colorScheme="red">

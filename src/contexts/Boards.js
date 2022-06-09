@@ -29,7 +29,6 @@ export function BoardsProvider({children}){
   useEffect(()=>{
     if(serverResponse?.status === 200 || serverResponse?.status === 201){
       const {data:{boards}} = serverResponse;
-      console.log({serverResponse})
       setBoards(boards)
     }
   },

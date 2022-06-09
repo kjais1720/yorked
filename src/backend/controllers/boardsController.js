@@ -23,7 +23,6 @@ export const getAllBoardsHandler = function (schema, request) {
       }
     );
   }
-  console.log(user)
   return new Response(200, {}, { boards: user.boards });
 };
 

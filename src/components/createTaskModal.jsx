@@ -1,9 +1,8 @@
-import { v4 as uuid } from "uuid"
+import { v4 as uuid } from "uuid";
 import { useBoards } from "contexts";
 import { boardsDispatchConstants } from "utilities";
-import { Quill } from "components"
 const { CREATE_NEW_TASK } = boardsDispatchConstants;
-
+import React from "react";
 import {
   Box,
   Button,
@@ -12,6 +11,7 @@ import {
   FormLabel,
   FormErrorMessage,
   FormHelperText,
+  Heading,
   IconButton,
   Input,
   Modal,
@@ -24,7 +24,7 @@ import {
   Select,
   Textarea,
 } from "@chakra-ui/react";
-
+import { Markdown } from "components";
 import { useEffect, useState } from "react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
@@ -39,15 +39,25 @@ const defaultTaskDetails = {
 export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
   const [taskDetails, setTaskDetails] = useState(defaultTaskDetails);
   const [newSubTask, setNewSubTask] = useState("");
+  const [markdown, setMarkdown] = useState({
+    show: false,
+    text: "",
+  });
   const { boardsApiDispatch } = useBoards();
 
-  useEffect(()=>{
-    const defaultColumnId = columns && columns[0]._id
-    setTaskDetails(prev=>({...prev,columnId:defaultColumnId})) //To set the default column as the first column if user doesn't specifically selects one
-  },[columns])
+  useEffect(() => {
+    const defaultColumnId = columns && columns[0]._id;
+    setTaskDetails((prev) => ({ ...prev, columnId: defaultColumnId })); //To set the default column as the first column if user doesn't specifically selects one
+  }, [columns]);
 
   const inputHandler = (e) => {
     const { name, value } = e.target;
+    if (name === "description") {
+      setMarkdown((prev) => ({
+        ...prev,
+        text: value,
+      }));
+    }
     setTaskDetails((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -57,10 +67,10 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
     setTaskDetails((prev) => ({
       ...prev,
       subTasks: prev.subTasks
-        ? [...prev.subTasks, { id:uuid(),title: newSubTask, checked: false }]
+        ? [...prev.subTasks, { id: uuid(), title: newSubTask, checked: false }]
         : [{ title: newSubTask, checked: false }],
     }));
-    setNewSubTask("")
+    setNewSubTask("");
   };
   const removeSubTask = (taskTitle) => {
     setTaskDetails((prev) => ({
@@ -81,10 +91,10 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
     onClose();
   };
 
-  const setDescription = value => {
-    console.log({value})
-    setTaskDetails(prev=> ({...prev,description:value}))
-  }
+  const setDescription = (value) => {
+    console.log({ value });
+    setTaskDetails((prev) => ({ ...prev, description: value }));
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl" p={8}>
@@ -153,13 +163,16 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
                 <IconButton onClick={createNewSubtask}>
                   <FaPlus />
                 </IconButton>
-                
               </Flex>
               {taskDetails.subTasks
                 ? taskDetails.subTasks.map(({ title }, idx) => (
                     <Flex key={idx} w="full">
                       <p key={idx}>{title}</p>
-                      <IconButton ml="auto" bg="transparent" onClick={() => removeSubTask(title)}>
+                      <IconButton
+                        ml="auto"
+                        bg="transparent"
+                        onClick={() => removeSubTask(title)}
+                      >
                         <FaTimes />
                       </IconButton>
                     </Flex>
@@ -168,9 +181,31 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
             </FormControl>
             <FormControl>
               <FormLabel htmlFor="description" color="gray.500">
-                Description
+                Description: (supports markdown)
               </FormLabel>
-              <Quill text={taskDetails.description} onChange={setDescription} />
+              <Textarea
+                id="description"
+                name="description"
+                value={taskDetails.description}
+                size="sm"
+                resize={"vertical"}
+                onChange={inputHandler}
+                onFocus={() => setMarkdown((prev) => ({ ...prev, show: true }))}
+                onBlur={() => setMarkdown((prev) => ({ ...prev, show: false }))}
+              />
+              {markdown.show && (
+                <Box marginY={4}>
+                  <Heading
+                    as="h2"
+                    color="gray.500"
+                    marginBottom={2}
+                    fontSize="md"
+                  >
+                    Live Preview:{" "}
+                  </Heading>
+                  <Markdown markdownText={markdown.text} />
+                </Box>
+              )}
             </FormControl>
             <Box textAlign="right">
               <Button type="submit" variant="solid" colorScheme="blue">
