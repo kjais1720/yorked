@@ -4,7 +4,9 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
+import { useDocumentTitle } from "utilities";
 export function Login() {
+  useDocumentTitle("Login/Signup | Yorked")
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Outlet/>

@@ -18,7 +18,7 @@ const { CREATE_NEW_BOARD, DELETE_BOARD } = boardsDispatchConstants;
 export function Boards() {
   const { boards, boardsApiDispatch } = useBoards();
   const [newBoardTitle, setNewBoardTitle] = useState("");
-  useDocumentTitle("Task Boards");
+  useDocumentTitle("Task Boards | Yorked");
   const createNewBoard = (e) => {
     e.preventDefault();
     boardsApiDispatch({

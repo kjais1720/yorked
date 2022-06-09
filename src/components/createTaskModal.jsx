@@ -25,13 +25,13 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
 const defaultTaskDetails = {
   title: "",
   subTasks: [],
-  priority: "",
+  priority: "low",
   columnId: "",
   description: "",
 };
@@ -41,6 +41,11 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
   const [newSubTask, setNewSubTask] = useState("");
   const { boardsApiDispatch } = useBoards();
 
+  useEffect(()=>{
+    const defaultColumnId = columns && columns[0]._id
+    setTaskDetails(prev=>({...prev,columnId:defaultColumnId})) //To set the default column as the first column if user doesn't specifically selects one
+  },[columns])
+
   const inputHandler = (e) => {
     const { name, value } = e.target;
     setTaskDetails((prev) => ({ ...prev, [name]: value }));
@@ -49,8 +54,6 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
   const subTaskChangeHandler = (e) => setNewSubTask(e.target.value);
 
   const createNewSubtask = () => {
-    // const upudatedSubTasks = taskDetails.subTasks?.map() || [];
-    
     setTaskDetails((prev) => ({
       ...prev,
       subTasks: prev.subTasks
@@ -77,7 +80,11 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
     setTaskDetails(defaultTaskDetails);
     onClose();
   };
-  const setDescription = value => setTaskDetails(prev=> ({...prev,description:value}))
+
+  const setDescription = value => {
+    console.log({value})
+    setTaskDetails(prev=> ({...prev,description:value}))
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl" p={8}>
@@ -163,13 +170,7 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
               <FormLabel htmlFor="description" color="gray.500">
                 Description
               </FormLabel>
-              {/* <Textarea
-                id="description"
-                size="sm"
-                resize={"vertical"}
-                onChange={inputHandler}
-              /> */}
-          <Quill text={taskDetails.description} onChange={setDescription} />
+              <Quill text={taskDetails.description} onChange={setDescription} />
             </FormControl>
             <Box textAlign="right">
               <Button type="submit" variant="solid" colorScheme="blue">

@@ -23,7 +23,6 @@ import { toast } from "react-toastify"
 
 export function LoginCard() {
   const {loginSignupHandler, serverError, serverResponse} = useAuth();
-  let resetLoginForm;
   const formik = useFormik({
     initialValues:{
       email:"",
@@ -35,9 +34,14 @@ export function LoginCard() {
     }),
     onSubmit:(values, actions)=>{
       loginSignupHandler("/auth/login",values);
-      resetLoginForm = actions.resetForm.bind(actions);
     }
   })
+  const guestLogin = () => {
+    loginSignupHandler("/auth/login",{
+      email:"johnrao@gmail.com",
+      password:"doekaR@123"
+    })
+  }
   useEffect(() => { // To handle response from the server
     if (serverError.response?.status === 401) {
       formik.setFieldError("password","Invalid Password")
@@ -93,6 +97,9 @@ export function LoginCard() {
           </Stack>
           <Button type="submit" colorScheme={"blue"} variant={"solid"}>
             Sign in
+          </Button>
+          <Button onClick={guestLogin} variant={"solid"}>
+            Guest Credentials
           </Button>
         </Stack>
       </Stack>

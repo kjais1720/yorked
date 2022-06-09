@@ -32,7 +32,7 @@ export function TaskBoard() {
     useBoards();
   const { colorMode } = useColorMode();
   const boardTitle = taskBoard?.title ? taskBoard.title : "";
-  useDocumentTitle(boardTitle);
+  useDocumentTitle(boardTitle+" | Yorked");
   useEffect(() => {
     const currentBoard = boards?.find(({ _id }) => _id === boardId) || {};
     setTaskBoard(currentBoard);

@@ -103,8 +103,10 @@ export function SignupCard() {
           <Stack pt={6}>
             <Text align={"center"}>
               Already a user?
-              <Link to="/auth/login" color={"blue.400"}>
+              <Link to="/auth/login">
+                <Text as="span" color="blue.400">
                 Login
+                </Text>
               </Link>
             </Text>
           </Stack>
