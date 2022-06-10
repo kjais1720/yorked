@@ -19,7 +19,6 @@ import {useFormik } from "formik"
 import * as yup from "yup";
 import { useAuth } from "contexts";
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify"
 
 export function LoginCard() {
   const {loginSignupHandler, serverError, serverResponse} = useAuth();
@@ -45,7 +44,6 @@ export function LoginCard() {
   useEffect(() => { // To handle response from the server
     if (serverError.response?.status === 401) {
       formik.setFieldError("password","Invalid Password")
-      console.log(resetLoginForm)
     } else if (serverError.response?.status === 404) {
       formik.setFieldError("email","Email doesn't exists")
     } 

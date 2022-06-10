@@ -22,7 +22,6 @@ export function SignupCard() {
   const { loginSignupHandler, serverError } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   useEffect(()=>{
-    console.log({serverError})
     if(serverError.errors){
 
     }

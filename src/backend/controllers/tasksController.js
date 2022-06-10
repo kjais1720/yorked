@@ -24,7 +24,6 @@ export const createTaskHandler = function (schema, request) {
     const { columnId } = task;
     const uniqueId = uuid();
     const { boardId } = request.params;
-    console.log({ task, columnId });
     const taskBoard = user.boards.find((board) => board._id === boardId);
     taskBoard.tasks.push({ ...task, _id: uniqueId });
     const taskColumn =
@@ -34,7 +33,6 @@ export const createTaskHandler = function (schema, request) {
     this.db.users.update({ _id: user._id }, user);
     return new Response(201, {}, { boards: user.boards });
   } catch (error) {
-    console.log({ error });
     return new Response(
       500,
       {},

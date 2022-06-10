@@ -47,7 +47,6 @@ export const createPomoTaskHandler = function (schema, request) {
     this.db.users.update({ _id: user._id }, user);
     return new Response(201, {}, { pomoTasks: user.pomoTasks });
   } catch (error) {
-    console.log({ error });
     return new Response(
       500,
       {},
@@ -110,7 +109,6 @@ export const deletePomoTaskHandler = function (schema, request) {
     }
     const { taskId } = request.params;
     user.pomoTasks = user.pomoTasks.filter(({ _id }) => _id !== taskId); // To remove the task from 'tasks' property of board
-    console.log(taskId)
     this.db.users.update({ _id: user._id }, user);
     return new Response(201, {}, { pomoTasks: user.pomoTasks });
   } catch (error) {

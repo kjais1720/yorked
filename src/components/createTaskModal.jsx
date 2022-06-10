@@ -92,7 +92,6 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
   };
 
   const setDescription = (value) => {
-    console.log({ value });
     setTaskDetails((prev) => ({ ...prev, description: value }));
   };
 
