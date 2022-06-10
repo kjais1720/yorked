@@ -80,19 +80,17 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
   };
   const createNewTask = (e) => {
     e.preventDefault();
-    boardsApiDispatch({
-      type: CREATE_NEW_TASK,
-      payload: {
-        newTask: taskDetails,
-        boardId,
-      },
-    });
-    setTaskDetails(defaultTaskDetails);
-    onClose();
-  };
-
-  const setDescription = (value) => {
-    setTaskDetails((prev) => ({ ...prev, description: value }));
+    if(taskDetails.title){
+      boardsApiDispatch({
+        type: CREATE_NEW_TASK,
+        payload: {
+          newTask: taskDetails,
+          boardId,
+        },
+      });
+      setTaskDetails(defaultTaskDetails);
+      onClose();
+    }
   };
 
   return (
