@@ -13,7 +13,7 @@ import { LoginCard, SignupCard } from "components";
 import { Box } from "@chakra-ui/react";
 export function AllRoutes() {
   return (
-    <Box px={{base:8, sm:4}} py={4}>
+    <Box px={{base:4, md:8}} py={4}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route element={<RequiresAuth />}>

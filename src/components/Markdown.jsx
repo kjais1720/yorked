@@ -9,10 +9,11 @@ export function Markdown({ markdownText, clickHandler }) {
       border="solid"
       borderWidth="1px"
       padding={2}
+      paddingLeft={8}
       borderColor="gray.400"
       minHeight="100px"
     >
-      <ReactMarkdown children={markdownText} remarkPlugins={[remarkGfm]} />
+      <ReactMarkdown children={markdownText} remarkPlugin={[remarkGfm]} />
     </Box>
   );
 }

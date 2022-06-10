@@ -125,13 +125,15 @@ export const EditPomoTaskPopover = ({taskToEdit}) => {
         initialFocusRef={firstFieldRef}
         onOpen={onOpen}
         onClose={onClose}
-        placement='right'
+        placement='top'
       >
         <PopoverTrigger>
-          <IconButton onClick={(e)=>{
+          <IconButton
+            bg="transparent"
+           onClick={(e)=>{
             onOpen();
             e.stopPropagation();
-          }} size='sm' icon={<EditIcon />} />
+          }} size='md' icon={<EditIcon />} />
         </PopoverTrigger>
         <PopoverContent p={5} bg={useColorModeValue("light.200","dark.100")} >
           <PopoverHeader textAlign="center" fontSize="lg">Edit Task</PopoverHeader>

@@ -11,13 +11,10 @@ import {
   IconButton,
   Text,
   useColorModeValue,
-  useColorMode,
 } from "@chakra-ui/react";
 import {
-  FaTrash,
   FaCheckCircle,
   FaPlusCircle,
-  FaEllipsisV,
 } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 export function Task({ task }) {
@@ -26,20 +23,18 @@ export function Task({ task }) {
 
   return (
     <Stack
-      // onClick={() => setActive(_id)}
-      p={4}
+      p={{base:0, md:4}}
       borderRadius={8}
-      // bg={isActive ? "primary.light" : "whiteAlpha.200"}
       bg={useColorModeValue("light.200", "dark.100")}
       borderLeft={isActive ? "solid 5px" : "none"}
-      borderLeftColor="primary.base"
+      borderLeftColor="primary.light"
       color={
         isDone
           ? "gray.400"
           : useColorModeValue("gray.600", "gray.100")
       }
     >
-      <Flex gap={4} align="start">
+      <Flex gap={{base:2, md:4}} align="center">
         <IconButton
           color={
             isDone
@@ -57,6 +52,7 @@ export function Task({ task }) {
           textDecoration={isDone ? "line-through" : "none"}
           fontSize="xl"
           paddingY={2}
+          onClick={() => setActiveTask(_id)}
         >
           {title}
         </Heading>
@@ -94,8 +90,8 @@ export function PomoTasks() {
   return (
     <Stack
       color={useColorModeValue("gray.600","light.200")}
-      flexBasis="450px"
-      p={4}
+      flexBasis="500px"
+      p={{base:0, md:4}}
       borderRadius={8}
       flex={1.5}
       bg={useColorModeValue("light.100","dark.200")}
@@ -120,7 +116,7 @@ export function PomoTasks() {
           </Box>
         </Button>
       )}
-      <Stack gap={2} overflowY="auto" maxHeight="50vh" paddingRight={2}>
+      <Stack gap={2} overflowY="auto" maxHeight="50vh">
         {pomoTasks.map((task) => (
           <Task setActive={setActiveTask} key={task._id} task={task} />
         ))}

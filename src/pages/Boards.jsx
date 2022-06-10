@@ -39,7 +39,7 @@ export function Boards() {
 
   return (
     <Box gap={4} align="center" w="full">
-      <Heading as="h2" size="md">
+      <Heading as="h2">
         All Boards
       </Heading>
       <form onSubmit={createNewBoard}>
