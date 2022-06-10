@@ -15,7 +15,7 @@ import {
   Tabs,
   TabList,
   Text,
-  useColorMode,
+  useColorModeValue,
   useDisclosure,
   Icon,
 } from "@chakra-ui/react";
@@ -30,7 +30,6 @@ export function TaskBoard() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { boards, boardsApiDispatch, selectedPriority, setSelectedPriority } =
     useBoards();
-  const { colorMode } = useColorMode();
   const boardTitle = taskBoard?.title ? taskBoard.title : "";
   useDocumentTitle(boardTitle+" | Yorked");
   useEffect(() => {
@@ -164,7 +163,7 @@ export function TaskBoard() {
         borderTopRightRadius={idx === 3 ? 8 : 0}
         borderBottomRightRadius={idx === 3 ? 8 : 0}
         _selected={{ color: "white", bg: "primary.light" }}
-        bg={colorMode === "light" ? "light.200" : "dark.100"}
+        bg={useColorModeValue("light.100","dark.200")}
       >
         {label}
       </Tab>
@@ -172,11 +171,11 @@ export function TaskBoard() {
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Flex justify="space-between" align="center">
+      <Flex align="center" flexWrap="wrap" justifyContent={{base:"center",md:"space-between"}}>
         <Heading as="h2" fontSize="lg">
           {boardTitle}
         </Heading>
-        <Flex align="center" gap={2}>
+        <Flex align="center" gap={2} flexWrap="wrap">
           <Text>Show Priority :</Text>
           <Tabs defaultIndex={defaultTab}>
             <TabList borderBottom="unset">
@@ -187,7 +186,7 @@ export function TaskBoard() {
       </Flex>
       <Flex
         gridGap={4}
-        bg={colorMode === "light" ? "light.100" : "dark.200"}
+        bg={useColorModeValue("light.100","dark.200")}
         py={4}
         w="full"
         sx={{
@@ -210,7 +209,7 @@ export function TaskBoard() {
           })}
         <Box
           p={1}
-          bg={colorMode === "light" ? "light.200" : "dark.100"}
+          bg={useColorModeValue("light.200","dark.100")}
           borderRadius={8}
           height="fit-content"
         >

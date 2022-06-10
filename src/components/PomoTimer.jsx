@@ -89,6 +89,7 @@ export function PomoTimer() {
   return (
     <DarkMode>
       <Stack
+        flexGrow={1}
         bgGradient="linear-gradient(to-br, primary.base, primary.light)"
         padding={4}
         borderRadius={8}

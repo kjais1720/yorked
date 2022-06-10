@@ -12,7 +12,7 @@ import { FaPlus } from "react-icons/fa";
 export function Column({ column, tasks, deleteColumn }) {
   const { _id, title } = column;
   return (
-    <Stack minWidth="xs" w="xs" bg={useColorModeValue("light.200", "dark.100")}>
+    <Stack minWidth="xs" w="xs" borderRadius={8} bg={useColorModeValue("light.200", "dark.100")}>
       <Heading
         as="h2"
         color="light.100"
