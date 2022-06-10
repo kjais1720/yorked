@@ -46,7 +46,7 @@ export function CreateTaskModal({ isOpen, onClose, columns, boardId }) {
   const { boardsApiDispatch } = useBoards();
 
   useEffect(() => {
-    const defaultColumnId = columns && columns[0]._id;
+    const defaultColumnId = columns && columns[0]?._id;
     setTaskDetails((prev) => ({ ...prev, columnId: defaultColumnId })); //To set the default column as the first column if user doesn't specifically selects one
   }, [columns]);
 
