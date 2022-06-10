@@ -27,7 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { useBoards } from "contexts";
 import { Markdown } from "components";
-import { FaPlus, FaTimes, FaCheck } from "react-icons/fa";
+import { FaPlus, FaTimes, FaCheck, FaClock } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { boardsDispatchConstants } from "utilities";
@@ -268,8 +268,12 @@ export function TaskDetailsModal({ task, isOpen, onClose }) {
               onClick={() => {
                 startPomodoro(title);
               }}
+              display="flex"
+              alignItems="center"
+              gap={1}
             >
-              Start Working
+              <Text as="span">Start Working</Text>
+              <FaClock/>
             </Button>
             <Button mx={2} onClick={deleteTask} colorScheme="red">
               Delete
