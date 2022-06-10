@@ -19,13 +19,16 @@ export function Boards() {
   const { boards, boardsApiDispatch } = useBoards();
   const [newBoardTitle, setNewBoardTitle] = useState("");
   useDocumentTitle("Task Boards | Yorked");
+
   const createNewBoard = (e) => {
     e.preventDefault();
-    boardsApiDispatch({
-      type: CREATE_NEW_BOARD,
-      payload: { title: newBoardTitle },
-    });
-    setNewBoardTitle("");
+    if(newBoardTitle !== ""){
+      boardsApiDispatch({
+        type: CREATE_NEW_BOARD,
+        payload: { title: newBoardTitle },
+      });
+      setNewBoardTitle("");
+    }
   };
 
   const deleteBoard = (id) => {

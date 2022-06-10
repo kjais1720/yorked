@@ -24,11 +24,13 @@ export function PomoTaskForm({ taskFromBoard, closeModal, clearTaskFromBoard }) 
   const { pomodoroDispatch } = usePomodoro();
   useEffect(()=>()=>clearTaskFromBoard(),[])
   const createTask = () => {
-    pomodoroDispatch({
-      type: CREATE_NEW_POMO_TASK,
-      payload: {...newTask},
-    });
-    closeModal();
+    if(newTask.title!==""){
+      pomodoroDispatch({
+        type: CREATE_NEW_POMO_TASK,
+        payload: {...newTask},
+      });
+      closeModal();
+    }
   };
 
   const updateNewTask = (e) => {

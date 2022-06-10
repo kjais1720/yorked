@@ -25,7 +25,6 @@ import {
 import { EditIcon } from "@chakra-ui/icons"
 import React, {useState} from "react";
 import { usePomodoro } from 'contexts';
-import { deleteTaskHandler, updateTaskHandler } from 'backend/controllers/tasksController';
 
 export const TextInput = React.forwardRef((props, ref) => {
   return (
@@ -99,7 +98,7 @@ export const Form = ({ taskToEdit, firstFieldRef, onCancel }) => {
         
       </Flex>
       <Flex gap={2} justify="end">
-        <Button size="sm" marginRight="auto" onClick={()=>deleteTask(newTask.id)} colorScheme="red">
+        <Button size="sm" marginRight="auto" onClick={()=>deleteTask(newTask._id)} colorScheme="red">
           Delete
         </Button>
         <Button size="sm" onClick={onCancel} colorScheme="gray">

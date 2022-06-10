@@ -22,7 +22,7 @@ export const pomodoroReducer = (state, { type, payload }) => {
     case DELETE_POMO_TASK:
       return {
         ...state,
-        url: `/user/pomodoro/tasks/${payload._id}`,
+        url: `/user/pomodoro/tasks/${payload}`,
         method: "delete",
         data: {},
       };
